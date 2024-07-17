@@ -38,17 +38,17 @@ print("This is our playing field:\n")
 show_playField(playField)
 
 while True:
-  player_x_input = int(input("\nPlayer x: make your choise (empty field 1 to 9): "))
-  player_x_input_index = player_x_input - 1
-  playField [player_x_input_index] = "x"
+  player_input = int(input("\nPlayer x: make your choise (empty field 1 to 9): "))
+  player_input_index = player_input - 1
+  playField [player_input_index] = "x"
   winner = checkWinner(playField)
   if winner != False:
     break 
   show_playField(playField)
 
-  player_o_input = int(input("\nPlayer o: make your choise (empty field 1 to 9): "))
-  player_o_input_index = player_o_input - 1
-  playField [player_o_input_index] = "o"
+  player_input = int(input("\nPlayer o: make your choise (empty field 1 to 9): "))
+  player_input_index = player_input - 1
+  playField [player_input_index] = "o"
   winner = checkWinner(playField)
   if winner != False:
     break 
