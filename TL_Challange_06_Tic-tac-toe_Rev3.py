@@ -9,7 +9,8 @@ Changes to Rev1:
 
   Open for Rev3:
   - optimize code
-  - Introduction of check for "Unentschieden"
+  
+  - check for wrong input by player
 """
 
 import os
@@ -26,8 +27,6 @@ def show_playField(playField):
   print("-----------------")
   print(" ", playField[6]," | ", playField[7]," | ", playField[8])
 
-# Function to check on "Unentschieden"
-  # pending..
 
 # Check if current player is the winner
 def checkWinner(playField, player):
@@ -58,11 +57,12 @@ print("This is your playing field.\n")
 print("\nPlease use the numbers 1 to 9 to indicate your chosen field.")
 input("Press ENTER when your are ready.")
 
-# Clearing the playing field
+# Clearing the playing field and initializing variables
 playField = [" "," "," "," "," "," "," "," "," "]
 show_playField(playField)
 
 winner = False
+unentschieden = False
 
 # main
 while True:
@@ -70,23 +70,36 @@ while True:
   player = "x"
   player_input = int(input("\nPlayer x: make your choise (empty field 1 to 9): "))
   player_input_index = player_input - 1
-  playField [player_input_index] = "x"
+  playField [player_input_index] = player
   winner = checkWinner(playField, player)
   show_playField(playField)
+  
+  if not " " in playField:
+    unentschieden = True
+    break
+    
   if winner:
     break 
-  
 
   # player o's turn
   player = "o"
   player_input = int(input("\nPlayer o: make your choise (empty field 1 to 9): "))
   player_input_index = player_input - 1
-  playField [player_input_index] = "o"
+  playField [player_input_index] = player
   winner = checkWinner(playField, player)
   show_playField(playField)
+  
+  if not " " in playField:
+    unentschieden = True
+    break
+    
   if winner:
     break 
   
-print("\nThe Winner is player ",player," !")
+if winner:
+  print("\nThe Winner is player ",player," !")
+
+if unentschieden:
+  print("\nNo loser and no winner :-) !")
 
 
